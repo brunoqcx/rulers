@@ -6,8 +6,6 @@ module Rulers
 
     def initialize(env)
       @env = env
-
-      render
     end
 
     def render(locals = {})
@@ -28,15 +26,7 @@ module Rulers
     end
 
     def instance_variable_hash
-      instance_variable_hash = {}
-
-      self.instance_variables.each do |instance_variable|
-        p instance_variable
-        p self.instance_variable_get(instance_variable)
-        instance_variable_hash[instance_variable] = self.instance_variable_get(instance_variable)
-      end
-
-      instance_variable_hash
+      instance_variables.each_with_object({}) { |k, v| v[k] = instance_variable_get(k) }
     end
   end
 end

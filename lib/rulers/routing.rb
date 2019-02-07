@@ -5,8 +5,6 @@ module Rulers
       cont = cont.capitalize
       cont += 'Controller'
 
-      p "xibs env path_info: #{env['PATH_INFO']}"
-
       [Object.const_get(cont), action]
     end
   end
