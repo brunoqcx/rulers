@@ -1,8 +1,10 @@
 require 'erubis'
+require_relative 'file_model'
 
 module Rulers
   class Controller
     attr_reader :env
+    include Rulers::Model
 
     def initialize(env)
       @env = env

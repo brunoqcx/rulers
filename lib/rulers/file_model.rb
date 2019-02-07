@@ -9,8 +9,8 @@ module Rulers
 
         @id = File.basename(basename, ".json").to_i
 
-        obj = File.read("db/quotes/quote.json")
-        @hash = MultiJson.load(File.read("db/quotes/quote.json"))  
+        obj = File.read("db/quotes/#{@id}.json")
+        @hash = MultiJson.load(obj)  
       end
 
       def [](name)
@@ -27,6 +27,11 @@ module Rulers
         rescue
           return nil
         end
+      end
+
+      def self.all
+        files = Dir['db/quotes/*.json']
+        files.map { |file|  FileModel.new file }
       end
     end
   end
